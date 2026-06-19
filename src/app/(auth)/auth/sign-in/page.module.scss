@@ -1,0 +1,26 @@
+@use '../../../../styles' as *;
+
+.container {
+	@include flex-center;
+	min-height: 100dvh;
+	padding: $space-4;
+}
+
+.card {
+	width: 100%;
+	max-width: 400px;
+}
+
+.success {
+	text-align: center;
+	color: $color-success;
+	font-size: $text-sm;
+	margin-top: 0.5rem;
+}
+
+.error {
+	text-align: center;
+	color: $color-destructive;
+	font-size: $text-sm;
+	margin-top: 0.5rem;
+}
