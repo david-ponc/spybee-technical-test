@@ -1,0 +1,109 @@
+@use '../../../styles' as *;
+
+.calendar {
+	padding: 0.75rem;
+	width: fit-content;
+}
+
+.months {
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
+}
+
+.month {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.monthCaption {
+	@include flex-between;
+	padding-inline: 0.5rem;
+	font-weight: 500;
+	font-size: $text-sm;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+}
+
+.weekdays {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 0;
+}
+
+.weekday {
+	@include flex-center;
+	width: var(--cell-size, 2.25rem);
+	height: var(--cell-size, 2.25rem);
+	font-size: $text-xs;
+	font-weight: 500;
+	color: $color-muted-foreground;
+}
+
+.weeks {
+	display: grid;
+	gap: 0;
+}
+
+.week {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+	@include flex-center;
+	width: var(--cell-size, 2.25rem);
+	height: var(--cell-size, 2.25rem);
+	font-size: $text-sm;
+	border-radius: $radius-md;
+	cursor: pointer;
+	transition: background-color $transition-fast, color $transition-fast;
+
+	&:hover {
+		background: $color-accent;
+	}
+
+	@include focus-ring-offset(2px, $color-ring, 2px);
+}
+
+.daySelected {
+	background: $color-primary;
+	color: $color-primary-foreground;
+
+	&:hover {
+		background: color-mix(in oklab, $color-primary 90%, transparent);
+	}
+}
+
+.dayToday {
+	font-weight: 600;
+}
+
+.dayOutside {
+	color: $color-muted-foreground;
+	opacity: 0.5;
+}
+
+.dayDisabled {
+	@include disabled-state(false);
+	opacity: 0.3;
+}
+
+.dayRangeStart,
+.dayRangeEnd {
+	background: $color-primary;
+	color: $color-primary-foreground;
+}
+
+.dayRangeMiddle {
+	background: color-mix(in oklab, $color-primary 20%, transparent);
+}
+
+.dayHidden {
+	visibility: hidden;
+}

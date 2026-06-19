@@ -1,0 +1,27 @@
+@use '../../../styles' as *;
+
+.skeleton {
+	display: inline-block;
+	border-radius: $radius-md;
+	background: color-mix(in oklab, $color-muted 72%, transparent);
+	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
+}
+
+.circle {
+	border-radius: $radius-full;
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+}

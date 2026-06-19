@@ -1,0 +1,40 @@
+@use '../../../styles' as *;
+
+.positioner {
+	z-index: $z-dropdown;
+}
+
+.popup {
+	z-index: $z-dropdown;
+	display: flex;
+	width: var(--available-width);
+	max-width: calc(var(--available-width) - 1rem);
+	min-width: 12rem;
+	max-height: var(--available-height);
+	flex-direction: column;
+	@include popup-base;
+	will-change: auto;
+	@include popup-animation(0.98, true);
+}
+
+.tooltipStyle {
+	width: fit-content;
+	max-width: 20rem;
+	padding: 0.375rem 0.5rem;
+	font-size: $text-xs;
+	line-height: $text-xs-line;
+	background: $color-foreground;
+	color: $color-background;
+}
+
+.title {
+	font-weight: 500;
+	font-size: $text-sm;
+	line-height: $text-sm-line;
+}
+
+.description {
+	color: $color-muted-foreground;
+	font-size: $text-sm;
+	line-height: $text-sm-line;
+}

@@ -1,0 +1,14 @@
+@use '../../../styles' as *;
+
+.textarea {
+	@include input-base;
+	field-sizing: content;
+	display: flex;
+	min-height: 4rem;
+	padding-block: 0.5rem;
+	resize: vertical;
+
+	@include input-focus(1px, $color-ring, true);
+	@include input-invalid(true, 1px);
+	@include input-disabled;
+}

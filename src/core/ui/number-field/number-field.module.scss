@@ -1,0 +1,111 @@
+@use '../../../styles' as *;
+
+.root {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.group {
+	display: flex;
+	align-items: center;
+	height: $input-height;
+	width: 100%;
+	min-width: 0;
+	border-radius: $radius-lg;
+	border: 1px solid $color-input;
+	background: transparent;
+	transition: border-color $transition-fast, box-shadow $transition-fast;
+
+	&:focus-within {
+		box-shadow: 0 0 0 2px $color-ring;
+	}
+
+	&[data-invalid] {
+		border-color: $color-destructive;
+	}
+}
+
+.input {
+	@include input-inner;
+	padding-inline: 0.625rem;
+	text-align: left;
+	cursor: inherit;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		margin: 0;
+		appearance: none;
+	}
+}
+
+.increment,
+.decrement {
+	@include flex-center;
+	width: 2rem;
+	height: 100%;
+	border: none;
+	background: transparent;
+	color: $color-muted-foreground;
+	cursor: pointer;
+	transition: color $transition-fast, background-color $transition-fast;
+
+	&:hover:not(:disabled) {
+		color: $color-foreground;
+		background: color-mix(in oklab, $color-muted 50%, transparent);
+	}
+
+	&:disabled {
+		@include disabled-state(false);
+	}
+}
+
+.increment {
+	border-left: 1px solid $color-input;
+	border-radius: 0 $radius-lg $radius-lg 0;
+}
+
+.decrement {
+	border-right: 1px solid $color-input;
+	border-radius: $radius-lg 0 0 $radius-lg;
+}
+
+.incrementGhost,
+.decrementGhost {
+	@include flex-center;
+	width: 1.5rem;
+	height: 1.5rem;
+	border: none;
+	background: transparent;
+	color: $color-muted-foreground;
+	cursor: pointer;
+	border-radius: $radius-sm;
+	transition: color $transition-fast, background-color $transition-fast;
+
+	&:hover:not(:disabled) {
+		color: $color-foreground;
+		background: color-mix(in oklab, $color-muted 50%, transparent);
+	}
+
+	&:disabled {
+		@include disabled-state(false);
+	}
+}
+
+.scrubArea {
+	@include input-base;
+	height: $input-height;
+	cursor: ew-resize;
+
+	&:focus-within {
+		box-shadow: 0 0 0 2px $color-ring;
+	}
+
+	&[data-invalid] {
+		border-color: $color-destructive;
+	}
+}
+
+.scrubAreaCursor {
+	filter: drop-shadow(0 0 2px $color-foreground);
+}

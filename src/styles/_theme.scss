@@ -1,0 +1,79 @@
+@use 'variables' as *;
+
+@layer theme {
+  :root {
+    --color-background: #{$neutral-50};
+    --color-foreground: #{$neutral-950};
+    --color-card: white;
+    --color-card-foreground: #{$neutral-950};
+    --color-popover: white;
+    --color-popover-foreground: #{$neutral-950};
+    --color-primary: #{$amber-300};
+    --color-primary-foreground: #{$amber-900};
+    --color-secondary: #{$neutral-100};
+    --color-secondary-foreground: #{$neutral-900};
+    --color-muted: #{$neutral-100};
+    --color-muted-foreground: #{$neutral-500};
+    --color-accent: #{$amber-100};
+    --color-accent-foreground: #{$amber-950};
+    --color-destructive: #{$red-500};
+    --color-destructive-foreground: #{$red-700};
+    --color-info: #{$sky-500};
+    --color-info-foreground: #{$sky-700};
+    --color-success: #{$emerald-500};
+    --color-success-foreground: #{$emerald-700};
+    --color-warning: #{$amber-500};
+    --color-warning-foreground: #{$amber-700};
+    --color-border: color-mix(in oklab, #{$neutral-300} 70%, transparent);
+    --color-input: color-mix(in oklab, #{$neutral-300} 70%, transparent);
+    --color-ring: #{$amber-400};
+
+    --color-sidebar: #{$neutral-50};
+    --color-sidebar-foreground: #{$neutral-950};
+    --color-sidebar-primary: #{$neutral-900};
+    --color-sidebar-primary-foreground: #{$neutral-50};
+    --color-sidebar-accent: #{$neutral-100};
+    --color-sidebar-accent-foreground: #{$neutral-900};
+    --color-sidebar-border: #{$neutral-200};
+    --color-sidebar-ring: #{$amber-400};
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: #{$neutral-950};
+      --color-foreground: #{$neutral-50};
+      --color-card: #{$neutral-900};
+      --color-card-foreground: #{$neutral-50};
+      --color-popover: #{$neutral-900};
+      --color-popover-foreground: #{$neutral-50};
+      --color-primary: #{$amber-500};
+      --color-primary-foreground: #{$amber-950};
+      --color-secondary: #{$neutral-800};
+      --color-secondary-foreground: #{$neutral-50};
+      --color-muted: #{$neutral-800};
+      --color-muted-foreground: #{$neutral-400};
+      --color-accent: #{$neutral-800};
+      --color-accent-foreground: #{$neutral-50};
+      --color-destructive: #{$red-500};
+      --color-destructive-foreground: #{$neutral-50};
+      --color-info: #{$sky-500};
+      --color-info-foreground: #{$sky-400};
+      --color-success: #{$emerald-500};
+      --color-success-foreground: #{$emerald-400};
+      --color-warning: #{$amber-500};
+      --color-warning-foreground: #{$amber-400};
+      --color-border: color-mix(in oklab, #{$neutral-700} 70%, transparent);
+      --color-input: color-mix(in oklab, #{$neutral-700} 70%, transparent);
+      --color-ring: #{$amber-400};
+
+      --color-sidebar: color-mix(in oklab, #{$neutral-900} 50%, transparent);
+      --color-sidebar-foreground: #{$neutral-50};
+      --color-sidebar-primary: #{$neutral-50};
+      --color-sidebar-primary-foreground: #{$neutral-900};
+      --color-sidebar-accent: #{$neutral-800};
+      --color-sidebar-accent-foreground: #{$neutral-50};
+      --color-sidebar-border: #{$neutral-700};
+      --color-sidebar-ring: #{$amber-400};
+    }
+  }
+}

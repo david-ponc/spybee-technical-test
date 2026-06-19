@@ -1,0 +1,154 @@
+@use '../../../styles' as *;
+
+.root {
+	position: relative;
+	display: flex;
+	flex-shrink: 0;
+	width: 2rem;
+	height: 2rem;
+	user-select: none;
+	border-radius: $radius-lg;
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: $radius-lg;
+		border: 1px solid $color-border;
+		mix-blend-mode: darken;
+		pointer-events: none;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		&::after {
+			mix-blend-mode: lighten;
+		}
+	}
+
+	&[data-size='lg'] {
+		width: 2.25rem;
+		height: 2.25rem;
+	}
+
+	&[data-size='sm'] {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+}
+
+.image {
+	aspect-ratio: 1;
+	width: 100%;
+	height: 100%;
+	border-radius: $radius-lg;
+	object-fit: cover;
+}
+
+.fallback {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	border-radius: $radius-lg;
+	background: $color-muted;
+	color: $color-muted-foreground;
+	font-size: $text-sm;
+	line-height: $text-sm-line;
+
+	.root[data-size='sm'] & {
+		font-size: $text-xs;
+		line-height: $text-xs-line;
+	}
+}
+
+.badge {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 0.625rem;
+	height: 0.625rem;
+	border-radius: $radius-lg;
+	background: $color-primary;
+	color: $color-primary-foreground;
+	background-blend-mode: color;
+	box-shadow: 0 0 0 2px $color-background;
+	pointer-events: none;
+	user-select: none;
+
+	& > svg {
+		width: 0.5rem;
+		height: 0.5rem;
+	}
+
+	.root[data-size='sm'] & {
+		width: 0.5rem;
+		height: 0.5rem;
+
+		& > svg {
+			display: none;
+		}
+	}
+
+	.root[data-size='lg'] & {
+		width: 0.75rem;
+		height: 0.75rem;
+	}
+}
+
+.group {
+	display: flex;
+
+	& > [data-slot='avatar'] {
+		box-shadow: 0 0 0 2px $color-background;
+
+		&:not(:first-child) {
+			margin-left: -0.5rem;
+		}
+	}
+}
+
+.groupCount {
+	position: relative;
+	display: flex;
+	flex-shrink: 0;
+	width: 2rem;
+	height: 2rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: $radius-lg;
+	background: $color-muted;
+	color: $color-muted-foreground;
+	font-size: $text-sm;
+	line-height: $text-sm-line;
+	box-shadow: 0 0 0 2px $color-background;
+
+	& > svg {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.group:has([data-size='lg']) & {
+		width: 2.25rem;
+		height: 2.25rem;
+
+		& > svg {
+			width: 1.25rem;
+			height: 1.25rem;
+		}
+	}
+
+	.group:has([data-size='sm']) & {
+		width: 1.5rem;
+		height: 1.5rem;
+
+		& > svg {
+			width: 0.75rem;
+			height: 0.75rem;
+		}
+	}
+}

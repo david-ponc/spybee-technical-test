@@ -1,0 +1,23 @@
+@use '../../../styles' as *;
+
+.input {
+	@include input-base;
+	height: $input-height;
+	padding-inline: 0.625rem;
+	padding-block: 0.25rem;
+
+	@include focus-ring(2px, $color-ring);
+	@include input-invalid;
+	@include input-disabled;
+
+	&::-webkit-file-upload-button {
+		display: inline-flex;
+		height: 1.5rem;
+		border: 0;
+		background: transparent;
+		font-weight: 500;
+		color: $color-foreground;
+		font-size: $text-sm;
+		line-height: $text-sm-line;
+	}
+}

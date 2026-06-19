@@ -1,0 +1,50 @@
+@use '../../../styles' as *;
+
+.positioner {
+	z-index: $z-dropdown;
+	height: var(--positioner-height);
+	width: var(--positioner-width);
+	max-width: var(--available-width);
+
+	&[data-ending-style],
+	&[data-starting-style] {
+		z-index: -$z-dropdown;
+	}
+}
+
+.popup {
+	display: inline-flex;
+	width: fit-content;
+	max-width: 20rem;
+	align-items: center;
+	gap: 0.375rem;
+	border-radius: $radius-md;
+	background: $color-foreground;
+	padding: 0.25rem 0.5rem;
+	color: $color-background;
+	font-size: $text-xs;
+	line-height: $text-xs-line;
+	box-shadow: $shadow-inset-light;
+	transform-origin: var(--transform-origin);
+	will-change: auto;
+	transition: opacity $transition-fast ease-out, transform $transition-fast ease-out;
+
+	&[data-ending-style],
+	&[data-starting-style] {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+
+	@include tooltip-side-animation;
+
+	&:has([data-slot='kbd']) {
+		padding-right: 0.375rem;
+	}
+
+	[data-slot='kbd'] {
+		position: relative;
+		isolation: isolate;
+		z-index: $z-dropdown;
+		border-radius: $radius-xs;
+	}
+}

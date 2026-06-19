@@ -1,0 +1,381 @@
+@use 'variables' as *;
+@use 'tokens' as *;
+
+@mixin flex-center($direction: row, $gap: null) {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: $direction;
+
+	@if $gap != null {
+		gap: $gap;
+	}
+}
+
+@mixin flex-between($gap: null) {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	@if $gap != null {
+		gap: $gap;
+	}
+}
+
+@mixin sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+@mixin text-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+@mixin text($size, $line-height: null) {
+	font-size: $size;
+
+	@if $line-height != null {
+		line-height: $line-height;
+	}
+}
+
+@mixin responsive-text($mobile-size, $mobile-line, $desktop-size, $desktop-line) {
+	font-size: $mobile-size;
+	line-height: $mobile-line;
+
+	@media (width >= $breakpoint-sm) {
+		font-size: $desktop-size;
+		line-height: $desktop-line;
+	}
+}
+
+@mixin icon-size($size) {
+	width: $size;
+	height: $size;
+	flex-shrink: 0;
+}
+
+@mixin focus-ring($width: 2px, $color: $color-ring, $offset: 0) {
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 $width $color;
+
+		@if $offset != 0 {
+			outline-offset: $offset;
+		}
+	}
+}
+
+@mixin focus-ring-offset($width: 2px, $color: $color-ring, $offset: 2px) {
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+		outline: $width solid $color;
+		outline-offset: $offset;
+	}
+}
+
+@mixin disabled-state($include-cursor: true) {
+	pointer-events: none;
+	opacity: 0.5;
+
+	@if $include-cursor {
+		cursor: not-allowed;
+	}
+}
+
+@mixin invalid-state($shadow: false, $shadow-width: 1px) {
+	&[aria-invalid='true'],
+	&[data-invalid] {
+		border-color: $color-destructive;
+
+		@if $shadow {
+			box-shadow: 0 0 0 $shadow-width $color-destructive;
+		}
+	}
+}
+
+@mixin input-invalid($shadow: false, $shadow-width: 1px) {
+	@include invalid-state($shadow, $shadow-width);
+}
+
+@mixin input-base($min-height: $input-height) {
+	width: 100%;
+	min-width: 0;
+	min-height: $min-height;
+	border-radius: $radius-lg;
+	border: 1px solid $color-input;
+	background: transparent;
+	font-size: $text-base;
+	line-height: $text-base-line;
+	color: $color-foreground;
+	outline: none;
+	transition: border-color $transition-fast, box-shadow $transition-fast;
+
+	&::placeholder {
+		color: $color-muted-foreground;
+	}
+
+	@media (width >= $breakpoint-sm) {
+		font-size: $text-sm;
+		line-height: $text-sm-line;
+	}
+}
+
+@mixin input-disabled($include-cursor: true) {
+	&:disabled,
+	&[data-disabled] {
+		@include disabled-state($include-cursor);
+		background: color-mix(in oklab, $color-input 50%, transparent);
+	}
+}
+
+@mixin input-focus($ring-width: 2px, $ring-color: $color-ring, $change-border: false) {
+	&:focus-visible {
+		outline: none;
+
+		@if $change-border {
+			border-color: $ring-color;
+		}
+
+		box-shadow: 0 0 0 $ring-width $ring-color;
+	}
+}
+
+@mixin input-standard($min-height: $input-height) {
+	@include input-base($min-height);
+	@include input-focus(2px, $color-ring);
+	@include input-invalid;
+	@include input-disabled;
+}
+
+@mixin input-inner {
+	flex: 1;
+	min-width: 0;
+	height: 100%;
+	width: 100%;
+	background: transparent;
+	border: none;
+	outline: none;
+	font-size: $text-base;
+	line-height: $text-base-line;
+	color: $color-foreground;
+
+	&::placeholder {
+		color: $color-muted-foreground;
+	}
+
+	@media (width >= $breakpoint-sm) {
+		font-size: $text-sm;
+		line-height: $text-sm-line;
+	}
+}
+
+@mixin popup-base {
+	border-radius: $radius-lg;
+	background: $color-popover;
+	color: $color-popover-foreground;
+	outline: none;
+	box-shadow: $shadow-popup;
+}
+
+@mixin popup-animation($scale: 0.98, $include-blur: false) {
+	transform-origin: var(--transform-origin);
+	transition: opacity $transition-fast ease-out, transform $transition-fast ease-out;
+
+	@if $include-blur {
+		transition: opacity $transition-fast ease-out, transform $transition-fast ease-out,
+			filter $transition-fast ease-out;
+	}
+
+	&[data-ending-style],
+	&[data-starting-style] {
+		opacity: 0;
+		transform: scale($scale);
+
+		@if $include-blur {
+			filter: blur(2px);
+		}
+	}
+
+	&[data-instant] {
+		transition: none;
+	}
+}
+
+@mixin tooltip-side-animation {
+	&[data-side='bottom'] {
+		&[data-ending-style],
+		&[data-starting-style] {
+			transform: translateY(-0.25rem) scale(0.96);
+		}
+	}
+
+	&[data-side='top'] {
+		&[data-ending-style],
+		&[data-starting-style] {
+			transform: translateY(0.25rem) scale(0.96);
+		}
+	}
+
+	&[data-side='left'] {
+		&[data-ending-style],
+		&[data-starting-style] {
+			transform: translateX(0.25rem) scale(0.96);
+		}
+	}
+
+	&[data-side='right'] {
+		&[data-ending-style],
+		&[data-starting-style] {
+			transform: translateX(-0.25rem) scale(0.96);
+		}
+	}
+}
+
+@mixin button-reset {
+	appearance: none;
+	border: none;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+}
+
+@mixin button-base {
+	position: relative;
+	isolation: isolate;
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	gap: $space-2;
+	font-weight: 500;
+	font-size: $text-sm;
+	line-height: $text-sm-line;
+	user-select: none;
+	white-space: nowrap;
+	border-radius: $radius-lg;
+	border: 1px solid transparent;
+	cursor: pointer;
+	transition: background-color $transition-base, border-color $transition-base,
+		color $transition-base;
+
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+		box-shadow: 0 0 0 2px $color-ring;
+	}
+
+	svg:not([class*='size-']) {
+		width: $icon-size-base;
+		height: $icon-size-base;
+	}
+}
+
+@mixin button-variant-solid($bg, $color, $hover-opacity: 90%, $active-opacity: 85%) {
+	background: $bg;
+	color: $color;
+	box-shadow: $shadow-inset-light;
+
+	&:hover {
+		background: color-mix(in oklab, $bg $hover-opacity, transparent);
+	}
+
+	&:active {
+		background: color-mix(in oklab, $bg $active-opacity, transparent);
+	}
+}
+
+@mixin button-variant-ghost($hover-bg: $color-secondary, $hover-opacity: 70%) {
+	background: transparent;
+	color: $color-foreground;
+
+	&:hover {
+		background: $hover-bg;
+	}
+
+	&:active {
+		background: color-mix(in oklab, $hover-bg $hover-opacity, transparent);
+	}
+}
+
+@mixin button-variant-outline {
+	background: transparent;
+	border-color: $color-border;
+	color: $color-foreground;
+	box-shadow: $shadow-inset-light;
+
+	&:hover {
+		background: $color-secondary;
+	}
+
+	&:active {
+		background: color-mix(in oklab, $color-secondary 80%, transparent);
+	}
+}
+
+@mixin badge($bg, $color, $radius: $radius-full) {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	width: fit-content;
+	padding: 0.125rem 0.5rem;
+	border-radius: $radius;
+	background: $bg;
+	color: $color;
+	font-size: $text-xs;
+	font-weight: 500;
+	line-height: $text-xs-line;
+}
+
+@mixin badge-subtle($base-color) {
+	@include badge(
+		color-mix(in oklab, $base-color 12%, transparent),
+		$base-color,
+		$radius-full
+	);
+}
+
+@mixin badge-soft($base-color, $foreground-color) {
+	@include badge(
+		color-mix(in oklab, $base-color 12%, transparent),
+		$foreground-color,
+		$radius-full
+	);
+}
+
+@mixin card-surface {
+	border-radius: $radius-xl;
+	background: $color-card;
+	color: $color-card-foreground;
+	box-shadow: $shadow-outline-subtle;
+}
+
+@mixin panel-surface {
+	border-radius: 0 0 $radius-xl $radius-xl;
+	border-top: 1px solid $color-border;
+	background: color-mix(in oklab, $color-muted 50%, transparent);
+}
+
+@mixin thin-scrollbar {
+	scrollbar-width: thin;
+	scrollbar-color: gray transparent;
+}

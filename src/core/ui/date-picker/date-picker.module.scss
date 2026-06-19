@@ -1,0 +1,40 @@
+@use '../../../styles' as *;
+
+.trigger {
+	@include input-base;
+	justify-content: space-between;
+	height: $input-height;
+	padding-inline: 0.625rem;
+	cursor: pointer;
+
+	@include input-focus(2px, $color-ring, true);
+	@include input-invalid;
+	@include input-disabled;
+}
+
+.triggerContent {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	flex: 1;
+	min-width: 0;
+}
+
+.placeholder {
+	color: $color-muted-foreground;
+}
+
+.icon {
+	@include icon-size($icon-size-base);
+	color: $color-muted-foreground;
+}
+
+.popup {
+	width: var(--anchor-width);
+	padding: 0;
+}
+
+.calendar {
+	padding: 0.75rem;
+	width: 100%;
+}

@@ -1,0 +1,89 @@
+@use '../../../styles' as *;
+
+.container {
+	position: relative;
+	width: 100%;
+	overflow-x: auto;
+}
+
+.root {
+	width: 100%;
+	caption-side: bottom;
+	font-size: $text-sm;
+	line-height: $text-sm-line;
+}
+
+.header {
+	tr {
+		border-bottom: 1px solid $color-border;
+	}
+}
+
+.body {
+	tr:last-child {
+		border-bottom: 0;
+	}
+}
+
+.footer {
+	border-top: 1px solid $color-border;
+	background: color-mix(in oklab, $color-muted 50%, transparent);
+	font-weight: 500;
+
+	> tr:last-child {
+		border-bottom: 0;
+	}
+}
+
+.row {
+	position: relative;
+	border-bottom: 1px solid $color-border;
+
+	&:hover {
+		background: color-mix(in oklab, $color-primary-foreground 4%, transparent);
+	}
+
+	&[data-state='selected']::before {
+		background: color-mix(in oklab, $color-primary 10%, transparent);
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+}
+
+.head {
+	height: 2.5rem;
+	white-space: nowrap;
+	padding-inline: $space-2;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: 500;
+	color: $color-muted-foreground;
+
+	> [role='checkbox'] {
+		transform: translateY(0.125rem);
+	}
+
+	&:has([role='checkbox']) {
+		padding: 0;
+		color: $color-foreground;
+	}
+}
+
+.cell {
+	white-space: nowrap;
+	padding: $space-2;
+	vertical-align: middle;
+
+	> [role='checkbox'] {
+		transform: translateY(0.125rem);
+	}
+
+	&:has([role='checkbox']) {
+		padding: 0;
+	}
+}

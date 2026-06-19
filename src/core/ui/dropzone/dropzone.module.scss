@@ -1,0 +1,47 @@
+@use '../../../styles' as *;
+
+.dropzone {
+	@include flex-center(column, 0.5rem);
+	padding: $space-8;
+	border: 2px dashed $color-border;
+	border-radius: $radius-lg;
+	background: color-mix(in oklab, $color-muted 20%, transparent);
+	cursor: pointer;
+	transition: border-color $transition-fast, background-color $transition-fast;
+
+	&:hover {
+		border-color: $color-ring;
+		background: color-mix(in oklab, $color-muted 40%, transparent);
+	}
+
+	@include focus-ring-offset(2px, $color-ring, 2px);
+
+	&[data-dragging='true'] {
+		border-color: $color-primary;
+		background: color-mix(in oklab, $color-primary 10%, transparent);
+	}
+
+	&[data-disabled='true'] {
+		@include disabled-state(false);
+	}
+}
+
+.icon {
+	@include icon-size(2.5rem);
+	color: $color-muted-foreground;
+}
+
+.label {
+	font-size: $text-sm;
+	font-weight: 500;
+	color: $color-foreground;
+}
+
+.hint {
+	font-size: $text-xs;
+	color: $color-muted-foreground;
+}
+
+.input {
+	@include sr-only;
+}
