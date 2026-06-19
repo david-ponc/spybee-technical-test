@@ -1,0 +1,67 @@
+@use '../../../styles' as *;
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
+}
+
+.idSkeleton {
+	width: 2.5rem;
+	height: 1rem;
+}
+
+.titleSkeleton {
+	width: 100%;
+	max-width: 14rem;
+	height: 1rem;
+}
+
+.badgeSkeleton {
+	width: 4.5rem;
+	height: 1.25rem;
+}
+
+.assigneesSkeleton {
+	width: 3rem;
+	height: 1.5rem;
+	border-radius: $radius-full;
+}
+
+.ownerSkeleton {
+	width: 6rem;
+	height: 1rem;
+}
+
+.dateSkeleton {
+	width: 5rem;
+	height: 1rem;
+}
+
+.pagination {
+	@include flex-between;
+	gap: $space-4;
+	padding: $space-4;
+	flex-wrap: wrap;
+}
+
+.infoSkeleton {
+	width: 10rem;
+	height: 1rem;
+}
+
+.controlsSkeleton {
+	display: inline-flex;
+	align-items: center;
+	gap: $space-2;
+}
+
+.buttonSkeleton {
+	width: 5rem;
+	height: 2rem;
+}
+
+.pageInfoSkeleton {
+	width: 6rem;
+	height: 1rem;
+}

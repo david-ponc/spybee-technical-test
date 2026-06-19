@@ -1,0 +1,38 @@
+@use '../../../styles' as *;
+
+.group {
+	@include button-reset;
+	display: inline-flex;
+	align-items: center;
+}
+
+.avatar {
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: $radius-full;
+	border: 2px solid $color-background;
+	object-fit: cover;
+
+	&:not(:first-child) {
+		margin-left: -0.5rem;
+	}
+}
+
+.overflow {
+	margin-left: -0.5rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: $radius-full;
+	border: 2px solid $color-background;
+	background: $color-muted;
+	color: $color-muted-foreground;
+	font-size: $text-xs;
+	font-weight: 500;
+}
+
+.empty {
+	color: $color-muted-foreground;
+}

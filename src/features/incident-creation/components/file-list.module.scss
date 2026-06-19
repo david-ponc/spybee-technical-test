@@ -1,0 +1,91 @@
+@use '../../../styles' as *;
+
+.fileList {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-top: 0.75rem;
+}
+
+.fileItem {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.5rem;
+	border: 1px solid $color-border;
+	border-radius: $radius-md;
+	background: $color-card;
+	transition: background-color $transition-fast;
+
+	&:hover {
+		background: color-mix(in oklab, $color-muted 30%, transparent);
+	}
+}
+
+.preview {
+	@include flex-center;
+	width: $space-12;
+	height: $space-12;
+	border-radius: $radius-sm;
+	overflow: hidden;
+	background: $color-muted;
+	flex-shrink: 0;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.previewIcon {
+	@include icon-size($space-6);
+	color: $color-muted-foreground;
+}
+
+.fileInfo {
+	display: flex;
+	flex-direction: column;
+	gap: 0.125rem;
+	flex: 1;
+	min-width: 0;
+}
+
+.fileName {
+	font-size: $text-sm;
+	font-weight: 500;
+	color: $color-foreground;
+	@include text-truncate;
+}
+
+.fileMeta {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: $text-xs;
+	color: $color-muted-foreground;
+}
+
+.removeButton {
+	@include flex-center;
+	width: 2rem;
+	height: 2rem;
+	border: none;
+	border-radius: $radius-sm;
+	background: transparent;
+	color: $color-muted-foreground;
+	cursor: pointer;
+	transition: background-color $transition-fast, color $transition-fast;
+	flex-shrink: 0;
+
+	&:hover {
+		background: color-mix(in oklab, $color-destructive 10%, transparent);
+		color: $color-destructive;
+	}
+
+	@include focus-ring-offset(2px, $color-ring, 2px);
+}
+
+.removeIcon {
+	@include icon-size($icon-size-base);
+}

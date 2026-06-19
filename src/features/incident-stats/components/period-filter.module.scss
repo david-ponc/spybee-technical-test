@@ -1,0 +1,19 @@
+@use '../../../styles' as *;
+
+.field {
+	width: 100%;
+
+	@media (width >= $breakpoint-sm) {
+		width: auto;
+	}
+}
+
+.label {
+	font-size: $text-sm;
+	font-weight: 500;
+	color: $color-foreground;
+}
+
+.trigger {
+	min-width: 12rem;
+}

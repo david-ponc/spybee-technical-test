@@ -1,0 +1,68 @@
+@use '../../../styles' as *;
+
+.detail {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.row {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+
+	& + & {
+		padding-top: 0.75rem;
+		border-top: 1px solid $color-border;
+	}
+}
+
+.label {
+	font-size: $text-xs;
+	font-weight: 500;
+	color: $color-muted-foreground;
+	text-transform: uppercase;
+	letter-spacing: 0.025em;
+}
+
+.value {
+	font-size: $text-sm;
+	color: $color-foreground;
+}
+
+.badgeList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.375rem;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.fileList {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.fileLink {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: $text-sm;
+	color: $color-foreground;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.empty {
+	font-size: $text-sm;
+	color: $color-muted-foreground;
+	font-style: italic;
+}

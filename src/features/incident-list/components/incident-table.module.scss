@@ -1,0 +1,71 @@
+@use '../../../styles' as *;
+
+.wrapper {
+	@include card-surface;
+	padding: 0;
+	overflow: hidden;
+}
+
+.table {
+	font-size: $text-sm;
+}
+
+.head {
+	white-space: nowrap;
+}
+
+.sortButton {
+	@include button-reset;
+	display: inline-flex;
+	align-items: center;
+	gap: $space-1;
+	font-weight: 500;
+	color: $color-muted-foreground;
+
+	&:hover {
+		color: $color-foreground;
+	}
+}
+
+.sortIconInactive {
+	opacity: 0.4;
+}
+
+.cell {
+	max-width: 16rem;
+}
+
+.titleCell {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.idCell {
+	font-variant-numeric: tabular-nums;
+	color: $color-muted-foreground;
+}
+
+.owner {
+	display: inline-flex;
+	align-items: center;
+	gap: $space-2;
+}
+
+.ownerAvatar {
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: $radius-full;
+	object-fit: cover;
+}
+
+.empty,
+.muted {
+	color: $color-muted-foreground;
+}
+
+.empty {
+	text-align: center;
+	padding-block: $space-8;
+}

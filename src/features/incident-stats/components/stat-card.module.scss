@@ -1,0 +1,69 @@
+@use '../../../styles' as *;
+
+.root {
+	min-height: 8.5rem;
+}
+
+.header {
+	padding-block-end: 0;
+}
+
+.title {
+	font-size: $text-sm;
+	font-weight: 500;
+	color: $color-muted-foreground;
+}
+
+.action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: $color-muted-foreground;
+
+	svg {
+		@include icon-size($icon-size-lg);
+	}
+}
+
+.panel {
+	display: flex;
+	flex-direction: column;
+	gap: $space-1;
+}
+
+.value {
+	font-size: 1.75rem;
+	font-weight: 700;
+	line-height: 2.25rem;
+	color: $color-foreground;
+}
+
+.subtitle {
+	font-size: $text-sm;
+	color: $color-muted-foreground;
+}
+
+.comparison {
+	font-size: $text-sm;
+	font-weight: 500;
+	color: $color-success;
+
+	svg {
+		@include icon-size($icon-size-sm);
+	}
+}
+
+.valueSkeleton {
+	width: 4rem;
+	height: 2.25rem;
+}
+
+.subtitleSkeleton {
+	width: 6rem;
+	height: 1.25rem;
+}
+
+.comparisonSkeleton {
+	width: 8rem;
+	height: 1.25rem;
+}

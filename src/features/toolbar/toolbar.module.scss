@@ -1,0 +1,32 @@
+@use '../../styles' as *;
+
+.toolbar {
+	position: absolute;
+	top: $space-4;
+	right: $space-4;
+	z-index: 10;
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+
+	@starting-style {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+
+	&[data-slot='card'] {
+		padding-block: 0;
+	}
+
+	& [data-slot='card-panel'] {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 0.5rem;
+	}
+}
+
+.toolbarClosing {
+	opacity: 0;
+	transform: translateX(100%);
+}
