@@ -1,5 +1,7 @@
 # Spybee Technical Test
 
+![Vista previa de la aplicación](./data/preview.png)
+
 Aplicación de gestión de incidentes para edificios. Permite registrar, visualizar y administrar incidencias de forma visual y estructurada.
 
 La aplicación se compone de dos módulos principales:
