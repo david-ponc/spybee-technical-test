@@ -19,10 +19,11 @@ export function IncidentHeatmap() {
 					</Card.Description>
 				</Card.Header>
 				<Card.Panel className={styles.panel}>
-					{isPending ? (
-						<IncidentHeatmapSkeleton />
-					) : (
-						<div ref={mapContainer} className={styles.map} />
+					<div ref={mapContainer} className={styles.map} />
+					{isPending && (
+						<div className={styles.overlayLoading}>
+							<IncidentHeatmapSkeleton />
+						</div>
 					)}
 					{error && (
 						<div className={styles.overlayError}>
