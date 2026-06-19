@@ -1,0 +1,9 @@
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: set this to true or false
+  sharp: false
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver
+saveExact: true
+minimumReleaseAge: 1440
